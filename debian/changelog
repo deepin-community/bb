@@ -1,5 +1,355 @@
-template-repository (1.0-1) unstable; urgency=medium
+bb (1.3rc1-13) unstable; urgency=medium
 
-  * Initial release
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+  * Update standards version to 4.6.1, no changes needed.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Axel Beckert ]
+  * Add lintian overrides for very-long-line-length-in-source-file in
+    binary files.
+  * Bump packaging copyright years in debian/copyright. Thanks Lintian!
+
+ -- Axel Beckert <abe@debian.org>  Sun, 20 Nov 2022 21:15:56 +0100
+
+bb (1.3rc1-12) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * debian/watch: Use HTTPS protocol.
+
+  [ Axel Beckert ]
+  * Bump debhelper compatibility level to 13.
+    + Build-depend on "debhelper-compat (= 13)" to replace debian/compat.
+  * Don't install README.LZO into the binary package.
+    + It's no end-user documentation.
+    + Also fixes lintian warning broken-lzo.
+  * Declare compliance with Debian Policy 4.5.1. (No changes needed.)
+  * Bump package maintainer copyright years in debian/copyright.
+  * Add lintian override for upstream-metadata-file-is-missing. The only
+    field we could put in there would be the redundant Homepage field.
+  * Extend patches to fix another typo in upstream documentation and code.
+  * Refresh disable_music_by_default.patch. Had an offset of 1 line.
+  * debian/patches/*.c.patch: Add minimal DEP3 patch description stating
+    that the patch was extracted from 1.3rc1-8.5's .diff.gz by
+    diff2patches. Fixes lintian warning quilt-patch-missing-description.
+  * Update README.Debian with regards to temporarily disabling PulseAudio.
+
+ -- Axel Beckert <abe@debian.org>  Sun, 17 Jan 2021 01:21:11 +0100
+
+bb (1.3rc1-11) unstable; urgency=medium
+
+  * Remove trailing whitespace from ancient debian/changelog entry.
+  * Declare compliance with Debian Policy 4.1.3.
+    + Change debian/copyright DEP5 format URL to HTTPS.
+  * Extend debian/patches/fix-typos-in-messages.patch to fix some more
+    typos.
+  * Add debian/duck-overrides to silence DUCK false positives.
+  * Bump debhelper compatibility level to 11.
+    + Update versioned build-dependency on debhelper accordingly.
+    + Drop "--with autotools-dev --parallel" from debian/rules.
+    + Drop build-dependency on autotools-dev.
+    + Update debian/patches/add_-lm.patch to work with autoreconf.
+  * Set "Rules-Requires-Root: no".
+  * Update Vcs-* headers for switch to salsa.debian.org.
+
+ -- Axel Beckert <abe@debian.org>  Tue, 02 Jan 2018 15:39:17 +0100
+
+bb (1.3rc1-10) unstable; urgency=medium
+
+  * Add patch to fix implicit declaration of strlen in main.c. (Reported
+    by the build log scanner.)
+  * Add desktop file. (Closes: #737826)
+    + Add image from http://aa-project.sourceforge.net/bb/bb.jpg
+      (converted to PNG and resized to 128x128) for use as menu icon.
+
+ -- Axel Beckert <abe@debian.org>  Fri, 12 Aug 2016 21:59:14 +0200
+
+bb (1.3rc1-9) unstable; urgency=low
+
+  * Add myself to Uploaders.
+  * Acknowledge NMUs. (Closes: #789525)
+  * Apply "wrap-and-sort -a".
+  * Revamp debian/rules:
+    + Use dh_auto_{configure,build,install,clean}.
+    + Remove now redundant removal of stamp files
+    + Remove parsing of DEB_BUILD_OPTIONS, it's now done automatically.
+    + Remove no more needed rpath mangling of generated Makefile.
+    + Finally switch to a minimal dh v7 style debian/rules file.
+  * Convert to source format "3.0 (quilt)" using diff2patches.
+    + Assign changes to bug reports or changelog items where obvious.
+  * Enabled all hardening build flags.
+  * Add simple debian/watch file (no version mangling yet).
+  * Support parallel building.
+  * Declare compliance with Debian Policy 3.9.8. (No changes needed.)
+  * Add patch against textform.c to fix typos found by lintian.
+  * Convert debian/copyright to machine-readable DEP-5 format and update
+    copyright years and owners.
+  * debian/copyright: Update addresses of XaoS homepage and AAlib mailing
+    lists. Issues reported by DUCK.
+  * Add Vcs-* headers for new collab-maint Git repository.
+  * Move the bb man page from section 1 (normal programs) to section 6
+    (games) even though the file conflict with the xymon package (formerly
+    called hobbit) no more exists for years. (Closes: #441011)
+
+ -- Axel Beckert <abe@debian.org>  Sat, 30 Jul 2016 22:26:57 +0200
+
+bb (1.3rc1-8.5) unstable; urgency=medium
+
+  * Non-maintainer upload.
+
+  [ Axel Beckert ]
+  * Move from no more supported debhelper compatibility level 4 to
+    currently recommended level 9 and make debian/rules and debian/control
+    more future-proof:
+    + Change "dh_clean -k" to "dh_prep".
+    + Remove explicit argument from dh_installchangelogs. (No more needed.)
+    + Add recommended targets build-indep and build-arch.
+    + Add ${misc:Depends} to Depends
+    + Closes: #817373
+  * Remove config.guess and config.sub from Debian's .diff.gz and use
+    dh_autotools-dev_{restore,update}config to provide up-to-date files at
+    build time.
+    + Add build-dependency on autotools-dev.
+
+  [ Logan Rosen ]
+  * debian/rules: Don't ignore all distclean errors.
+  * debian/copyright: Don't point to symlink GPL.
+
+ -- Axel Beckert <abe@debian.org>  Thu, 21 Jul 2016 19:21:48 +0200
+
+bb (1.3rc1-8.4) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop the dependency on oss-compat, it's no longer needed. libmikmod
+    now supports ALSA. Closes: #617426.
+  * Build-depend on libmikmod-dev instead of libmikmod2-dev.
+    Closes: #744906.
+
+ -- Stephen Kitt <skitt@debian.org>  Sun, 21 Jun 2015 20:30:55 +0200
+
+bb (1.3rc1-8.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Improve README.Debian from previous upload:
+    + Mention how to run bb under PulseAudio anyways (Thanks Anthony
+      DeRobertis!)
+    + Fix typo (Thanks Antoine Amarilli!)
+
+ -- Axel Beckert <abe@debian.org>  Sun, 12 Apr 2015 22:10:43 +0200
+
+bb (1.3rc1-8.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Mitigate hanging visuals in combination with PulseAudio.
+    + Set default answer for Music to "no".
+    + Add README.Debian explaining the situation.
+    + Mitigates: #761023
+
+ -- Axel Beckert <abe@debian.org>  Wed, 01 Apr 2015 21:35:03 +0200
+
+bb (1.3rc1-8.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Makefile.am, Makefile.in: Added -lm to bb_LDADD.  Fixes FTBFS.
+    Patch by Bhavani Shankar R <bhavi@ubuntu.com>.  Closes: #553954, #608869.
+  * debian/control: Added Homepage field.  Closes: #495048.
+
+ -- Bart Martens <bartm@debian.org>  Sun, 02 Oct 2011 15:16:31 +0200
+
+bb (1.3rc1-8) unstable; urgency=low
+
+  * Depend on oss-compat to make music/sound work again. This іs
+    bug #385844 and should really be fixed in libmikmod2, but until that
+    is done I'll fix it in bb locally.
+  * Fix typo in description (Closes: #363176).
+  * debian/copyright:
+    + New FSF address (lintian).
+    + Be more verbose, print license of all files.
+    + My packaging is public domain.
+  * Standards-Version: 3.7.2.2 (no changes required).
+
+ -- Uwe Hermann <uwe@debian.org>  Fri,  2 Mar 2007 15:36:01 +0100
+
+bb (1.3rc1-7) unstable; urgency=low
+
+  * Fix FTBS with gcc 3.4 and 4.0 (Closes: #317415).
+    Thanks to Karl Chen for the patch.
+  * Build against libaa1 instead of aalib1 (Closes: #317167).
+  * Standards-Version: 3.6.2.0 (no changes required).
+  * Moved bb from /usr/bin to /usr/games (Closes: #260536).
+
+ -- Uwe Hermann <uwe@debian.org>  Fri,  8 Jul 2005 19:55:42 +0200
+
+bb (1.3rc1-6) unstable; urgency=low
+
+  * Fixed segfault on amd64 and alpha (Closes: #304434, #32160).
+    Thanks go to Corey Hickey, Kaare Hviid and Helge Kreutzmann for the
+    patch and for testing it on amd64 and alpha.
+  * Updated debian/copyright.
+
+ -- Uwe Hermann <uwe@debian.org>  Mon, 25 Apr 2005 02:45:35 +0200
+
+bb (1.3rc1-5) unstable; urgency=low
+
+  * Improved description (Closes: #209430).
+  * Standards-Version: 3.6.1.0 (no changes).
+  * debian/menu: Fixed Typos.
+
+ -- Uwe Hermann <uwe@debian.org>  Thu, 25 Sep 2003 20:19:45 +0200
+
+bb (1.3rc1-4) unstable; urgency=low
+
+  * debian/menu: s/needs=vc/needs=text/ (Closes: #195075).
+  * Standards-Version: 3.5.9.0.
+  * Build-Depends: debhelper (>> 4.0.0).
+  * Use a recent dh_make template for debian/rules.
+
+ -- Uwe Hermann <uwe@debian.org>  Tue,  3 Jun 2003 16:33:48 +0200
+
+bb (1.3rc1-3) unstable; urgency=low
+
+  * debian/changelog: Removed emacs cruft.
+  * Changed my email address to uwe@debian.org.
+  * debian/rules: Use a recent dh_make template.
+
+ -- Uwe Hermann <uwe@debian.org>  Sun, 24 Mar 2002 23:53:40 +0100
+
+bb (1.3rc1-2) unstable; urgency=low
+
+  * Enable hack in backconv.c, so that Joey Hess <joey@kitenet.net> can
+    remove a far uglier hack in aalib (Closes: #112039).
+  * Build-Depend on aalib-dev >= 1.4p5-7 (the first version without the hack).
+  * debian/menu: Use X11 and vc, not X11 and text.
+  * bb.1: Fix "SEE ALSO" link. It's aa3d(1) not aa3d(6).
+
+ -- Uwe Hermann <uh1763@hermann-uwe.de>  Sun, 30 Dec 2001 20:08:43 +0100
+
+bb (1.3rc1-1) unstable; urgency=low
+
+  * New maintainer (with permission from Michael Bramer <grisu@debian.org>).
+  * Repackaged from scratch using debhelper v3.
+  * Acknowledge NMU (Thanks Steve!).
+    Closes: #84976, #101453, #103171, #107905, #117144, #112200.
+  * bb.1:
+      + Added more programs to the "SEE ALSO" section.
+      + Improved description.
+      + Added BUGS and LICENSE sections.
+      + Fixed some typos and several smaller issues.
+  * debian/control:
+     + Removed useless Build-Depends 'debmake', 'slang1-dev',
+       'xlibs-dev' and 'libncurses5-dev'. debmake is not used anymore (we use
+       debhelper now) and the others are not used directly, but are
+       dependencies of aalib...
+     + Moved to section 'games' because it IMHO fits better in there...
+     + Slightly changed description.
+  * debian/copyright:
+     + Updated URL to the upstream tarball.
+     + List upstream author.
+  * debian/dirs: Removed, not needed.
+  * debian/docs: Additionally install AUTHORS.
+  * debian/rules:
+      + Use $(CURDIR) instead of `pwd`.
+      + Added support for DEB_BUILD_OPTIONS.
+  * debian/menu: Small fix.
+  * README: Fixed a few typos and other minor issues.
+  * Fixed cruft from patch which didn't apply correctly (Closes: #119070).
+  * Fixed all compiler warnings.
+
+ -- Uwe Hermann <uh1763@hermann-uwe.de>  Sun, 16 Dec 2001 20:48:55 +0100
+
+bb (1.3rc1-0.1) unstable; urgency=low
+
+  * Non-Maintainer Upload for Bug-Squashing Party.
+  * Fix Build-Depends from debhelper to debmake. (Closes: #112200)
+  * Update Build-Depends as well.
+  * Update to 1.3rc1. (Closes: #112039)
+  * Said files don't exist in this release. (Closes: #84976)
+  * Also fixed in this release. (Closes: #107905)
+  * bb_snd_server was removed upstream. (Closes: #101453)
+  * Apply Stephen Stafford's patch to the manpage. (Closes: #103171)
+  * Also apply Uwe Hermann's patch to the manpage. (Closes: #117144)
+  * Add ugly hack to debian/rules to include upstream changelog.
+  * *.s3m have moved to /usr/share/bb, FHS-compliance, here we come.
+  * Fixed lintian errors. (Standards-Version, rpath, not calling
+    dpkg-gencontrol with -isp, and add-log-mail-address in changelog.)
+
+ -- Steve Kowalik <stevenk@debian.org>  Sat, 10 Nov 2001 17:00:42 +1100
+
+bb (1.2-12) unstable; urgency=low
+
+  * fix Build-Depends (s/debmake/debhelper/)
+
+ -- Michael Bramer <michael@debsupport.de>  Mon, 15 Jan 2001 18:55:14 +0100
+
+bb (1.2-11) unstable; urgency=low
+
+  * change architectures to any
+
+ -- Michael Bramer <grisu@debian.org>  Mon, 15 Jan 2001 18:44:04 +0100
+
+bb (1.2-10) unstable; urgency=low
+
+  * rebuild with new libs Close: #80420
+  * fix description Close: #63243
+  * add alpha patch Close: #66145
+  * add Build-Depends Close: #70202, #78375
+  * change ./bb_snd_server to bb_snd_server in unix.c. Close: #78376
+  * patch man-page Close: #79965
+  * Thanks to all Bug-Reporters
+
+ -- Michael Bramer <michael@debsupport.de>  Mon, 25 Dec 2000 10:02:28 +0100
+
+bb (1.2-9) unstable; urgency=low
+
+  * rebuild with new libs Close: #47344 (sorry, me mirror war not
+    updated)
+
+ -- Michael Bramer <grisu@debian.org>  Mon, 18 Oct 1999 01:48:59 +0200
+
+bb (1.2-8) unstable; urgency=low
+
+  * rebuild with new libs Close: #47344
+
+ -- Michael Bramer <grisu@debian.org>  Fri, 15 Oct 1999 05:56:08 +0200
+
+bb (1.2-7) unstable; urgency=low
+
+  * recompiled with slang1-dev 1.2.2-3 to fix dependency
+
+ -- Michael Bramer <grisu@debian.org>  Wed,  8 Sep 1999 09:38:19 +0200
+
+bb (1.2-6) unstable; urgency=low
+
+  * add 'm68k powerpc sparc' to Architecture (close:#40409)
+
+ -- Michael Bramer <grisu@debian.org>  Tue, 29 Jun 1999 13:07:24 +0200
+
+bb (1.2-5) unstable; urgency=low
+
+  * compile with new ncurses
+
+ -- Michael Bramer <grisu@debian.org>  Thu,  4 Mar 1999 12:15:20 +0100
+
+bb (1.2-4) unstable; urgency=low
+
+  * recompile bb with slang1 (FIX: #29406
+
+ -- Michael Bramer <grisu@debian.org>  Thu, 17 Dec 1998 19:47:28 +0100
+
+bb (1.2-3) unstable; urgency=low
+
+  * Change menue from Apps/misc to Games/Toys
+
+ -- Michael Bramer <grisu@debian.org>  Wed, 26 Aug 1998 10:11:18 +0200
+
+bb (1.2-2) unstable; urgency=low
+
+  * add '-u' to debstd
+  * correct the maintainer address
+
+ -- Michael Bramer <grisu@debian.org>  Sat, 15 Aug 1998 09:51:37 +0200
+
+bb (1.2-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Michael Bramer <grisu@debian.org>  Sat,  8 Aug 1998 11:17:41 +0200
