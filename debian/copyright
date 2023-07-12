@@ -1,9 +1,44 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: template-repository
-Source: https://github.com/deepin-community/template-repository
+Upstream-Name: BB
+Upstream-Contact: Jan Hubicka <hubicka@freesoft.cz>
+Source: http://aa-project.sourceforge.net/bb/
 
 Files: *
-Copyright: 2023 Tsic404 <liuheng@deepin.org>
+Copyright: 1997-2001 AA-group <aa-project-aa-lib@lists.sourceforge.net>
+License: GPL-2+
+
+Files: autopilo.c autopilo.h complex.h formulas.c formulas.h scene7.c timers.c timers.h ui.h zoom.c zoom.h
+Copyright: 1996-1997 Jan Hubicka <hubicka@freesoft.cz>
+           1996=1997 Thomas Marsh
+License: GPL-2+
+
+Files: julia.c ctrl87.c ctrl87.h
+Copyright: 1996-2001, Jan Hubicka and the XaoS Development Team
+Comment:
+ These files was taken from XaoS-the fast portable realtime interactive
+ fractal zoomer. but it is simplified for BB. You may get complette
+ sources at XaoS homepage (http://matek.hu/xaos/).
+License: GPL-2+
+
+Files: minilzo.c minilzo.h mylzo.h
+Copyright: 1996, 1997 Markus Franz Xaver Johannes Oberhumer
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2001-2007 Uwe Hermann <uwe@debian.org>
+           2015-2022 Axel Beckert <abe@debian.org>
+License: public-domain
+ The packaging done by Uwe Hermann <uwe@debian.org> is hereby
+  released as public domain.
+Comment: The packaging was redone in 2001.
+
+Files: debian/bb.png
+Copyright: 1997 AA-group <aa-project-aa-lib@lists.sourceforge.net>
+License: GPL-2+
+Comment: This file is a conversion of
+ http://aa-project.sourceforge.net/bb/bb.jpg to PNG and 128x128 pixels
+ size using graphicsmagick-imagemagick-compat's convert tool.
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,7 +51,8 @@ License: GPL-2+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111, USA.
  .
  On Debian systems, the complete text of the GNU General
- Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.

@@ -1,0 +1,16 @@
+BB vs PulseAudio
+================
+
+Unfortunately BB does not work properly ("video" output freezes) if
+PulseAudio is active and Music is requested. Due to this issue Music
+in BB is turned off by default in Debian.
+
+If you have PulseAudio installed and want to show off BB with Music,
+you can do that by starting BB as follows:
+
+  $ pasuspender -- env PULSE_SERVER= bb
+
+This issue is tracked in the Debian Bug Tracking System at
+https://bugs.debian.org/123150 and https://bugs.debian.org/761023
+
+ -- Axel Beckert <abe@debian.org>, Sun, 17 Jan 2021 01:19:05 +0100
